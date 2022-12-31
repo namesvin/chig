@@ -1,10 +1,13 @@
 import sqlite3, logging as l
 
-def init():
+def connect():
     global conn
     global cursor
-    conn = sqlite3.connect('chat.db', check_same_thread=False)
+    conn = sqlite3.connect('chig.db', check_same_thread=False)
     cursor = conn.cursor()
+
+def init():
+    connect()
 
     cursor.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='messages' ''')
     if cursor.fetchone()[0]==1: 
@@ -20,23 +23,19 @@ def drop():
     cursor.execute(''' DELETE FROM messages ''')
     conn.commit()
 
-
 def init_auth():
-    global aconn
-    global acursor
-    aconn = sqlite3.connect('auth.db', check_same_thread=False)
-    acursor = conn.cursor()
+    connect()
 
-    acursor.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='auth' ''')
-    if acursor.fetchone()[0]==1: 
-        l.warning("Table exists!")
+    cursor.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='auth' ''')
+    if cursor.fetchone()[0]==1: 
+        l.warning("Auth table exists!")
     else:
-        l.warning("Table does not exist, creating now...")
-        acursor.execute('''CREATE TABLE auth (username TEXT, password TEXT, created_at DATETIME DEFAULT CURRENT_TIMESTAMP)''')
-        aconn.commit()
+        l.warning("Auth table does not exist, creating now...")
+        cursor.execute('''CREATE TABLE auth (username TEXT, password TEXT, created_at DATETIME DEFAULT CURRENT_TIMESTAMP)''')
+        conn.commit()
         l.warning("Table created!")
 
-def drop():
+def drop_auth():
     l.warning("Deleting everything!")
-    acursor.execute(''' DELETE FROM auth ''')
-    aconn.commit()
+    cursor.execute(''' DELETE FROM auth ''')
+    conn.commit()
