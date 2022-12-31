@@ -87,7 +87,7 @@ def cleardb():
     l.warning("DB clear called.")
     db.drop()
     db.drop_auth()
-    return "DB Clear", 200
+    return "DBs Cleared", 200
 
 @app.after_request
 def after_request(response):
