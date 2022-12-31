@@ -1,10 +1,10 @@
-import flask, datetime, logging as l, chigdb as db, chigauth as auth, chiginv as inv
+import flask, datetime, logging as l, chigdb as db, chigauth as auth, chiginv as inv, chigsec
 from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_session import Session
 
 app = flask.Flask(__name__)
-app.secret_key = b'nyomod fasz'
+app.secret_key = chigsec.key
 app.config['SESSION_TYPE'] = 'filesystem'
 socketio = SocketIO(app)
 CORS(app, origins=['*'])
@@ -40,7 +40,7 @@ def register():
         password = flask.request.form['password']
         invite = flask.request.form['invite'].strip()
 
-        if inv.checkinvite(invite):
+        if inv.checkinvite(invite) or invite == chigsec.inv:
             inv.deleteinvite(invite)
             if auth.register(username, password):
                 return flask.redirect('/')
@@ -106,6 +106,7 @@ def cleardb():
     db.drop()
     db.drop_auth()
     db.drop_invites()
+    Session(app)
     return "DBs Cleared", 200
 
 @app.after_request
