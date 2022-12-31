@@ -97,6 +97,7 @@ def after_request(response):
 def start():
     db.init()
     db.init_auth()
+    db.init_invites()
     if __name__ == '__main__':
         app.debug = True
         socketio.run(app, port=5000, host="0.0.0.0")
