@@ -12,6 +12,7 @@ Session(app)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    inv.checkexpire()
     if flask.request.method == 'POST':
         username = flask.request.form['username']
         password = flask.request.form['password']
@@ -37,9 +38,10 @@ def register():
     if flask.request.method == 'POST':
         username = flask.request.form['username']
         password = flask.request.form['password']
-        invite = flask.request.form['invite']
+        invite = flask.request.form['invite'].strip()
 
         if inv.checkinvite(invite):
+            inv.deleteinvite(invite)
             if auth.register(username, password):
                 return flask.redirect('/')
         else:
@@ -56,11 +58,12 @@ def invites():
 
 @app.route("/invq")
 def invq():
-    return flask.jsonify(inv.getinvs(flask.session['username']))
+    return inv.getinvs(flask.session['username'])
 
 @app.route("/reqinv")
 def reqinv():
-    return inv.createinvite(flask.session['username'])
+    inv.createinvite(flask.session['username'])
+    return flask.redirect('/invites')
 
 @app.route("/")
 def index():
@@ -102,6 +105,7 @@ def cleardb():
     l.warning("DB clear called.")
     db.drop()
     db.drop_auth()
+    db.drop_invites()
     return "DBs Cleared", 200
 
 @app.after_request
