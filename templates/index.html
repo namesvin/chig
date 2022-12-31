@@ -15,7 +15,12 @@
     </form>
 
     <script>    
-        var socket = io.connect('http://127.0.0.1:5000');
+        //var socket = io.connect('http://127.0.0.1:5000');
+        var socket = io.connect(document.URL);
+
+        function sleep(ms) {
+           return new Promise(resolve => setTimeout(resolve, ms));
+        }
 
         var form = document.getElementById("message-form");
 
@@ -31,11 +36,11 @@
             xhr.send(formData);
             messageInput.value = '';
             updateMessages();
-            socket.emit('msg_ts')
+            //socket.emit('msg_ts')
         } 
         form.addEventListener('submit', handleForm);
 
-        socket.on('msg_fs', function() {
+        socket.on('new_message', function() {
             updateMessages()
         });
 
