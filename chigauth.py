@@ -1,8 +1,5 @@
 import hashlib, logging as l, chigdb as db
 
-def init():
-    db.init_auth()
-
 def hashpass(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
@@ -49,12 +46,3 @@ def deleteuser(username):
     l.warning("Deleting user " + username)
     cursor.execute('DELETE FROM auth WHERE username = ?', (username,))
     return True
-
-init()
-register("test", "123")
-register("test2", "321")
-register("test3", "333")
-#print(usernamefree("test"))
-print(deleteuser("test"))
-print(usernamefree("test"))
-print(authenticate("test2", "321"))

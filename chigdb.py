@@ -36,6 +36,8 @@ def init_auth():
         l.warning("Table created!")
 
 def drop_auth():
+    connect()
+
     l.warning("Deleting everything!")
     cursor.execute(''' DELETE FROM auth ''')
     conn.commit()

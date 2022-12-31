@@ -81,6 +81,7 @@ def messages():
 def cleardb():
     l.warning("DB clear called.")
     db.drop()
+    db.drop_auth()
     return "DB Clear", 200
 
 @app.after_request
@@ -95,11 +96,9 @@ def handle_message():
 
 def start():
     db.init()
-    auth.init()
+    db.init_auth()
     if __name__ == '__main__':
         app.debug = True
         socketio.run(app, port=5000)
-        #app.run(port=5000)
-
 
 start()
