@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Login</title>
-  </head>
-  <body>
-    <form action="/login" method="post" autocomplete="off">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" autocomplete="off" required>
-      <br>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" autocomplete="off" required>
-      <br>
-      <button type="submit">Log in</button>
-      <button type="button" onclick="location.href='/register'">Register</button>
-    </form>
-  </body>
+    <head>
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+        <link rel="stylesheet" href="https://newcss.net/theme/night.css"> 
+    </head>
+    <body>
+        <form action="/login" method="post" autocomplete="off">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" autocomplete="off" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" autocomplete="off" required>
+            <br>
+            <button type="submit">Log in</button>
+            <button type="button" onclick="location.href='/register'">Register</button>
+        </form>
+    </body>
 </html>
