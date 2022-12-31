@@ -63,14 +63,6 @@ def send():
     socketio.emit('new_message', message)
     return '', 204
 
-@app.route('/messages_old')
-def messages_old():
-    cursor = db.conn.cursor()
-    cursor.execute('''SELECT message FROM messages ORDER BY created_at DESC LIMIT 100''')
-    cursor.execute('''SELECT sent_by FROM messages ORDER BY created_at DESC LIMIT 100''')
-    messages = cursor.fetchall()
-    return flask.jsonify(messages)
-
 @app.route('/messages')
 def messages():
     cursor = db.conn.cursor()
@@ -83,7 +75,6 @@ def messages():
         sent_by = row[1]
         message = row[2]
         messages[created_at] = {'sent_by' : sent_by, 'message' : message}
-    print(auth.users)
     return flask.jsonify(messages)
 
 @app.route('/cleardb')
