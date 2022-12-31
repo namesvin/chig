@@ -1,12 +1,7 @@
 import hashlib, logging as l, chigdb as db
 
-global users
-users = {}
-
 def init():
     db.init_auth()
-    l.warning("Creating admin user!")
-    users["admin"] = "Vince123"
 
 def hashpass(password):
     return hashlib.sha256(password.encode()).hexdigest()
@@ -15,8 +10,10 @@ def usernamefree(username):
     cursor = db.conn.cursor()
     cursor.execute('''SELECT EXISTS(SELECT 1 FROM auth WHERE username='%s')''' % username)
     if cursor.fetchone()[0] != 0:
+        l.warning("Username " + username + " already taken!")
         return False
     else:
+        l.warning("Username " + username + " free!")
         return True
 
 def register(username, password):
@@ -36,17 +33,28 @@ def register(username, password):
 
 def authenticate(username, password):
     cursor = db.conn.cursor()
-    cursor.execute('''SELECT username, password FROM auth ORDER BY created_at DESC LIMIT 100''')
+    cursor.execute('''SELECT username, password FROM auth''')
     rows = cursor.fetchall()
     for row in rows:
         if row[0] == username:
             passworddb = row[1]
             if hashpass(password) == passworddb:
-                l.warning("User authenticated!")
+                l.warning("User " + username + " authenticated!")
                 return True
+    l.warning("User " + username + " failed to authenticate!")
     return False
+
+def deleteuser(username):
+    cursor = db.conn.cursor()
+    l.warning("Deleting user " + username)
+    cursor.execute('DELETE FROM auth WHERE username = ?', (username,))
+    return True
 
 init()
 register("test", "123")
+register("test2", "321")
+register("test3", "333")
+#print(usernamefree("test"))
+print(deleteuser("test"))
 print(usernamefree("test"))
-print(authenticate("test", "123"))
+print(authenticate("test2", "321"))
