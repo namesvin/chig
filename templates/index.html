@@ -1,69 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
         <title>ChIG Beta</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <h1>ChIG Beta</h1>
-    <p style="display: inline;">Logged in as {{ username }}</p>
-    <button type="button" onclick="location.href='/logout';">Log Out</button>
-    <div id="messages" style="overflow-y:scroll; width: 700px; height:400px;"></div>
-    <form id="message-form" autocomplete="off">
-        <input type="text" size="60" id="message-input" name="message-input">
-        <button type="submit" id="send-message">Send</button>
-    </form>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+        <link rel="stylesheet" href="https://newcss.net/theme/night.css"> 
+    </head>
+    <body>
+        <h1>ChIG Beta</h1>
+        <p style="display: inline;">Logged in as {{ username }}</p>
+        <button type="button" onclick="location.href='/logout';">Log Out</button>
+        <div id="messages" style="overflow-y:scroll; width: 700px; height:400px;"></div>
+        <form id="message-form" autocomplete="off">
+            <input type="text" size="60" id="message-input" name="message-input">
+            <button type="submit" id="send-message">Send</button>
+        </form>
 
-    <script>    
-        //var socket = io.connect('http://127.0.0.1:5000');
-        var socket = io.connect(document.URL);
+        <script>    
+            var socket = io.connect(document.URL);
 
-        function sleep(ms) {
-           return new Promise(resolve => setTimeout(resolve, ms));
-        }
+            function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+            }
 
-        var form = document.getElementById("message-form");
+            var form = document.getElementById("message-form");
 
-        function handleForm(event) {
-            event.preventDefault();
-            var messageInput = document.getElementById('message-input');
-            var message = messageInput.value;
-            var formData = new FormData(document.getElementById('message-form'));
-            console.log(message)
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/send');
-            socket.emit('new_message');
-            xhr.send(formData);
-            messageInput.value = '';
+            function handleForm(event) {
+                event.preventDefault();
+                var messageInput = document.getElementById('message-input');
+                var message = messageInput.value;
+                var formData = new FormData(document.getElementById('message-form'));
+                console.log(message)
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/send');
+                socket.emit('new_message');
+                xhr.send(formData);
+                messageInput.value = '';
+                updateMessages();
+            } 
+            form.addEventListener('submit', handleForm);
+
+            socket.on('new_message', function() {
+                updateMessages()
+            });
+
+            function updateMessages() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/messages');
+                xhr.onload = function() {
+                    var messages = JSON.parse(xhr.responseText);
+                    var messagesDiv = document.getElementById('messages');
+                    messagesDiv.innerHTML = '';
+                    for (let created_at in messages) {
+                        let p = document.createElement('p');
+                        p.innerHTML = `${messages[created_at]['sent_by']}: ${messages[created_at]['message']}`;
+                        messagesDiv.appendChild(p);
+                        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                    }
+                };
+                xhr.send();
+            }
+
             updateMessages();
-            //socket.emit('msg_ts')
-        } 
-        form.addEventListener('submit', handleForm);
-
-        socket.on('new_message', function() {
-            updateMessages()
-        });
-
-        function updateMessages() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/messages');
-            xhr.onload = function() {
-                var messages = JSON.parse(xhr.responseText);
-                var messagesDiv = document.getElementById('messages');
-                messagesDiv.innerHTML = '';
-                for (let created_at in messages) {
-                    let p = document.createElement('p');
-                    p.innerHTML = `${messages[created_at]['sent_by']}: ${messages[created_at]['message']}`;
-                    messagesDiv.appendChild(p);
-                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                }
-            };
-            xhr.send();
-        }
-
-        updateMessages();
-    </script>
-    
-
-  </body>
+        </script>
+    </body>
 </html>
