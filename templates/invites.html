@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+        <link rel="stylesheet" href="https://newcss.net/theme/night.css"> 
+    </head>
+    <body>
+        <h1 style="display: flex; justify-content: center;">ChIG Beta</h1>
+        <div id="wrapper" style="display: flex; margin: auto; justify-content: center; align-items: center;">
+            <h3>Invites for {{ username }}</h3>
+            <hr>
+            <button type="button" onclick="location.href='/reqinv'" style="float: right;">Request Invite</button>
+        </div>
+        <div id="invites" style="overflow-y:scroll; width: 100%; height:400px; padding: 5px;"></div>
+    </body>
+</html>

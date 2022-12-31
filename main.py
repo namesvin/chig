@@ -1,4 +1,4 @@
-import flask, datetime, logging as l, chigdb as db, chigauth as auth
+import flask, datetime, logging as l, chigdb as db, chigauth as auth, chiginv as inv
 from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_session import Session
@@ -37,15 +37,30 @@ def register():
     if flask.request.method == 'POST':
         username = flask.request.form['username']
         password = flask.request.form['password']
-        key = flask.request.form['key']
+        invite = flask.request.form['invite']
 
-        if key == 'secretive':
+        if inv.checkinvite(invite):
             if auth.register(username, password):
                 return flask.redirect('/')
         else:
             return 500
     else:
         return flask.render_template('register.html')
+
+@app.route("/invites")
+def invites():
+    if 'username' in flask.session:
+        return flask.render_template('invites.html', username=flask.session['username'])
+    else:
+        return flask.redirect('/')
+
+@app.route("/invq")
+def invq():
+    return flask.jsonify(inv.getinvs(flask.session['username']))
+
+@app.route("/reqinv")
+def reqinv():
+    return inv.createinvite(flask.session['username'])
 
 @app.route("/")
 def index():
