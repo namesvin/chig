@@ -94,11 +94,6 @@ def after_request(response):
   response.headers.add('Access-Control-Allow-Origin', '*')
   return response
 
-@socketio.on('msg_ts')
-def handle_message():
-  l.warning("Emitting new message!")
-  socketio.emit('msg_fs')
-
 def start():
     db.init()
     db.init_auth()

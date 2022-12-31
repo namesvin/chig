@@ -9,14 +9,19 @@
         <link rel="stylesheet" href="https://newcss.net/theme/night.css"> 
     </head>
     <body>
-        <h1>ChIG Beta</h1>
-        <p style="display: inline;">Logged in as {{ username }}</p>
-        <button type="button" onclick="location.href='/logout';">Log Out</button>
-        <div id="messages" style="overflow-y:scroll; width: 700px; height:400px;"></div>
-        <form id="message-form" autocomplete="off">
-            <input type="text" size="60" id="message-input" name="message-input">
-            <button type="submit" id="send-message">Send</button>
-        </form>
+        <div id="wrapper" style="margin: auto; justify-content: center; align-items: center;">
+            <h1 style="display: flex; justify-content: center;">ChIG Beta</h1>
+            <div id="log-wrapper" style="height: 30px; display: flex; align-items: center;">
+                <p style="height: 0px; margin-right: auto;">Logged in as {{ username }}</p>
+                <button type="button" onclick="location.href='/logout';" style="height: 30px;">Log Out</button>
+            </div>
+            <hr style="opacity: 0%;">
+            <div id="messages" style="overflow-y:scroll; width: 100%; height:400px; padding: 5px;"></div>
+            <form id="message-form" autocomplete="off" style="width: 100%;">
+                <input type="text" style="width:100%;" id="message-input" name="message-input">
+                <button type="submit" id="send-message" style="float: right; width: auto;">Send</button>
+            </form>
+        </div>
 
         <script>    
             var socket = io.connect(document.URL);

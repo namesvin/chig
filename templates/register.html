@@ -8,17 +8,20 @@
         <link rel="stylesheet" href="https://newcss.net/theme/night.css"> 
     </head>
     <body>
-        <form action="/register" method="post" autocomplete="off">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <br>
-            <label for="password">Key:</label>
-            <input type="password" id="key" name="key" required>
-            <br>
-            <button type="submit">Register</button>
-        </form>
+        <h1 style="display: flex; justify-content: center;">ChIG Beta</h1>
+        <div id="wrapper" style="display: flex; margin: auto; justify-content: center; align-items: center;">
+            <form action="/register" method="post" autocomplete="off">
+                <label for="username" style="display: inline-block; width: 90px;"><b>Username:</b></label>
+                <input type="text" id="username" name="username" style="width: 100%;" required>
+                <br>
+                <label for="password" style="display: inline-block; width: 90px;"><b>Password:</b></label>
+                <input type="password" id="password" name="password" style="width: 100%;" required>
+                <br>
+                <label for="password" style="display: inline-block; width: 90px;"><b>Key:</b></label>
+                <input type="password" id="key" name="key" style="width: 100%;" required>
+                <br>
+                <button type="submit" style="float: right;">Register</button>
+            </form>
+        </div>
     </body>
 </html>
