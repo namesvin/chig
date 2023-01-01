@@ -7,6 +7,11 @@
         <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
         <link rel="stylesheet" href="https://newcss.net/theme/night.css"> 
+        <style>
+            .messages::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
     </head>
     <body>
         <div id="wrapper" style="margin: auto; justify-content: center; align-items: center;">
@@ -17,7 +22,7 @@
                 <button type="button" onclick="location.href='/logout';" style="height: 30px;">Log Out</button>
             </div>
             <hr style="opacity: 0%;">
-            <div id="messages" style="overflow-y:scroll; width: 100%; height:400px; padding: 5px;"></div>
+            <div class="messages" id="messages" style="overflow-y:scroll; scrollbar-width: none; width: 100%; height:400px; padding: 5px;"></div>
             <form id="message-form" autocomplete="off" style="width: 100%;">
                 <input type="text" style="width:100%;" id="message-input" name="message-input">
                 <button type="submit" id="send-message" style="float: right; width: auto;">Send</button>
