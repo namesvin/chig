@@ -7,25 +7,24 @@
         <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
         <link rel="stylesheet" href="https://newcss.net/theme/night.css"> 
-        <style>
-            .messages::-webkit-scrollbar {
-                display: none;
-            }
-        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,200&display=swap" rel="stylesheet">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
     </head>
     <body>
-        <div id="wrapper" style="margin: auto; justify-content: center; align-items: center;">
-            <h1 style="display: flex; justify-content: center;">ChIG Beta</h1>
-            <div id="log-wrapper" style="height: 30px; display: flex; align-items: center;">
-                <p style="height: 0px; margin-right: auto;">Logged in as {{ username }}</p>
-                <button type="button" onclick="location.href='/invites';" style="height: 30px; margin-right: 7px;">My Invites</button>
-                <button type="button" onclick="location.href='/logout';" style="height: 30px;">Log Out</button>
+        <div class="wrapper" id="wrapper" >
+            <h1 class="chigtitle">ChIG Beta</h1>
+            <div class="log-wrapper" id="log-wrapper">
+                <p class="lia" >Logged in as {{ username }}</p>
+                <button type="button" class="topbutton invites" onclick="location.href='/invites';">My Invites</button>
+                <button type="button" class="topbutton" onclick="location.href='/logout';">Log Out</button>
             </div>
-            <hr style="opacity: 0%;">
-            <div class="messages" id="messages" style="overflow-y:scroll; scrollbar-width: none; width: 100%; height:400px; padding: 5px;"></div>
-            <form id="message-form" autocomplete="off" style="width: 100%;">
-                <input type="text" style="width:100%;" id="message-input" name="message-input">
-                <button type="submit" id="send-message" style="float: right; width: auto;">Send</button>
+            <hr class="transparent">
+            <div class="messages" id="messages"></div>
+            <form id="message-form" autocomplete="off">
+                <input type="text" id="message-input" class="chatbox" name="message-input">
+                <button type="submit" id="send-message" class="submit">Send</button>
             </form>
         </div>
 
@@ -66,7 +65,7 @@
                     messagesDiv.innerHTML = '';
                     for (let created_at in messages) {
                         let p = document.createElement('p');
-                        p.innerHTML = `${messages[created_at]['sent_by']}: ${messages[created_at]['message']}`;
+                        p.innerHTML = `<b>${messages[created_at]['sent_by']}:</b> ${messages[created_at]['message']}`;
                         messagesDiv.appendChild(p);
                         messagesDiv.scrollTop = messagesDiv.scrollHeight;
                     }
@@ -76,5 +75,6 @@
 
             updateMessages();
         </script>
+        <aside class="madewith">Made with &lt;3 by Vince &VerticalLine; Check this project out on <a href="https://github.com/namesvin/chig">GitHub</a></aside>
     </body>
 </html>

@@ -15,7 +15,7 @@ def init():
     else:
         l.warning("Table does not exist, creating now...")
         #cursor.execute('''CREATE TABLE messages (id INTEGER PRIMARY KEY, sent_by TEXT, message TEXT, created_at DATETIME DEFAULT(STRFTIME('%Y-%m-%d %H:%M:%f', 'NOW')))''')
-        cursor.execute('''CREATE TABLE messages (id INTEGER PRIMARY KEY, sent_by TEXT, message TEXT, created_at TIMESTAMP''')
+        cursor.execute('''CREATE TABLE messages (id INTEGER PRIMARY KEY, sent_by TEXT, message TEXT, created_at TIMESTAMP)''')
         conn.commit()
         l.warning("Messages table created!")
 

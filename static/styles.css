@@ -1,0 +1,76 @@
+body {
+    font-family: 'Poppins', monospace;
+}
+
+h1 {
+    border: none;
+}
+
+.wrapper {
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.chigtitle {
+    font-size: 70;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+}
+
+.log-wrapper {
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.lia {
+    height: 0px;
+    margin-right: auto;
+}
+
+.topbutton {
+    height: 30px;
+}
+
+.invites {
+    margin-right: 7px;
+}
+
+.transparent {
+    opacity: 0%;
+}
+
+.messages {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    width: 100%;
+    height: 400px;
+    padding: 5px;
+}
+
+.messages::-webkit-scrollbar {
+    display:none
+}
+
+.message-form {
+   width: 100%; 
+}
+
+.chatbox {
+    width: 100%;
+}
+
+.submit {
+    float: right;
+    width: auto;
+}
+
+.madewith {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 5px;
+    float: right;
+}
