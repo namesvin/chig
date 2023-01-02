@@ -105,12 +105,18 @@ def messages():
 
 @app.route('/cleardb')
 def cleardb():
-    l.warning("DB clear called.")
-    db.drop()
-    db.drop_auth()
-    db.drop_invites()
-    Session(app)
-    return "DBs Cleared", 200
+    if not flask.request.args.get('clear') is None:
+            if flask.request.args.get('clear') == chigsec.clear:
+                l.warning("DB clear called.")
+                db.drop()
+                db.drop_auth()
+                db.drop_invites()
+                Session(app)
+                return "DBs Cleared", 200
+            else:
+                return 'Fuck. You.', 500
+    else:
+        return 'Fuck. You.', 500
 
 @app.after_request
 def after_request(response):
