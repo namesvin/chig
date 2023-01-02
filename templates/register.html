@@ -6,21 +6,26 @@
         <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
         <link rel="stylesheet" href="https://newcss.net/theme/night.css"> 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,200&display=swap" rel="stylesheet">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
     </head>
     <body>
-        <h1 style="display: flex; justify-content: center;">ChIG Beta</h1>
-        <div id="wrapper" style="display: flex; margin: auto; justify-content: center; align-items: center;">
+        <h1 class="chigtitle">ChIG Beta</h1>
+        <br>
+        <div id="wrapper" class="wrapper df">
             <form action="/register" method="post" autocomplete="off">
-                <label for="username" style="display: inline-block; width: 90px;"><b>Username:</b></label>
-                <input type="text" id="username" name="username" style="width: 100%;" required>
+                <label for="username" class="lfu"><b>Username:</b></label>
+                <input type="text" id="username" name="username" class="inpus" required>
                 <br>
-                <label for="password" style="display: inline-block; width: 90px;"><b>Password:</b></label>
-                <input type="password" id="password" name="password" style="width: 100%;" required>
+                <label for="password" class="lfu"><b>Password:</b></label>
+                <input type="password" id="password" name="password" class="inpus" required>
                 <br>
-                <label for="invite" style="display: inline-block; width: 90px;"><b>Invite:</b></label>
-                <input type="text" id="invite" name="invite" style="width: 100%;" required>
+                <label for="invitee" class="lfu"><b>Invite:</b></label>
+                <input type="text" id="invite" name="invite" class="inpus" required>
                 <br>
-                <button type="submit" style="float: right;">Register</button>
+                <button type="submit" class="submit">Register</button>
             </form>
         </div>
     </body>

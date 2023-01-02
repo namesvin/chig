@@ -2,14 +2,24 @@ body {
     font-family: 'Poppins', monospace;
 }
 
-h1 {
+h1{
     border: none;
+}
+
+h3 {
+    border: none;
+    height: 0px;
+    margin-right: auto;
 }
 
 .wrapper {
     margin: auto;
     justify-content: center;
     align-items: center;
+}
+
+.df {
+    display: flex;
 }
 
 .chigtitle {
@@ -34,7 +44,7 @@ h1 {
     height: 30px;
 }
 
-.invites {
+.invitesbtn {
     margin-right: 7px;
 }
 
@@ -73,4 +83,24 @@ h1 {
     top: 0;
     padding: 5px;
     float: right;
+}
+
+.invites {
+    overflow-y:scroll;
+    width: 100%;
+    height:400px;
+    padding: 5px
+}
+
+.lfu {
+    display: inline-block;
+    width: 95px;
+}
+
+.inpus {
+    width: 100%;
+}
+
+.submit-l {
+    margin-left: 10px;
 }

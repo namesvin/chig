@@ -44,8 +44,10 @@ def register():
             inv.deleteinvite(invite)
             if auth.register(username, password):
                 return flask.redirect('/')
+            else:
+                return 'User already exists!', 500
         else:
-            return 500
+            return 'Invalid invite!', 500
     else:
         return flask.render_template('register.html')
 
