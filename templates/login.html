@@ -14,6 +14,9 @@
     <body>
         <h1 class="chigtitle">ChIG Beta</h1>
         <br>
+        {% if error %}
+        <div class="wrapper df"><blockquote class="error bq">Error: {{ error }}</blockquote></div>
+        {% endif %}
         <div id="wrapper" class="wrapper df">
             <form action="/login" method="post" autocomplete="off">
                 <label for="username" class="lfu"><b>Username:</b></label>
@@ -22,8 +25,8 @@
                 <label for="password" class="lfu"><b>Password:</b></label>
                 <input type="password" id="password" name="password" class="inpus" required>
                 <br>
-                <button type="submit" class="submit submit-l">Log In</button>
-                <button type="button" onclick="location.href='/register'" class="submit">No Account?</button>
+                <button type="submit" class="submit submit-l marginafter">Log In</button>
+                <button type="button" onclick="location.href='/register'" class="submit marginafter">No Account?</button>
             </form>
         </div>
     </body>

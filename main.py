@@ -22,7 +22,7 @@ def login():
             flask.session['username'] = username
             return flask.redirect('/')
         else:
-            return f"Maybe next time, fucko."
+            return flask.render_template('login.html', error='Invalid username or password!')
     else:
         return flask.render_template('login.html')
 
@@ -45,9 +45,10 @@ def register():
             if auth.register(username, password):
                 return flask.redirect('/')
             else:
-                return 'User already exists!', 500
+                return flask.render_template('register.html', error='User already exists')
         else:
-            return 'Invalid invite!', 500
+            return flask.render_template('register.html', error='Invalid Invite!')
+            
     else:
         return flask.render_template('register.html')
 

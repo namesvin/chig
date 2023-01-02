@@ -104,3 +104,14 @@ h3 {
 .submit-l {
     margin-left: 10px;
 }
+
+.marginafter {
+    margin-top: 5px;
+}
+
+.error {
+    width: 50%;
+    height: auto;
+    color: crimson;
+    border: 2px solid crimson;
+}

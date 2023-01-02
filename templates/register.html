@@ -14,7 +14,11 @@
     <body>
         <h1 class="chigtitle">ChIG Beta</h1>
         <br>
+        {% if error %}
+        <div class="wrapper df"><blockquote class="error bq">Error: {{ error }}</blockquote></div>
+        {% endif %}
         <div id="wrapper" class="wrapper df">
+            
             <form action="/register" method="post" autocomplete="off">
                 <label for="username" class="lfu"><b>Username:</b></label>
                 <input type="text" id="username" name="username" class="inpus" required>
@@ -25,7 +29,7 @@
                 <label for="invitee" class="lfu"><b>Invite:</b></label>
                 <input type="text" id="invite" name="invite" class="inpus" required>
                 <br>
-                <button type="submit" class="submit">Register</button>
+                <button type="submit" class="submit marginafter">Register</button>
             </form>
         </div>
     </body>
