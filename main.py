@@ -84,7 +84,6 @@ def send():
     username = flask.session['username']
     cursor = db.conn.cursor()
     cursor.execute('''INSERT INTO messages (sent_by, message, created_at) VALUES (?, ?, ?)''', (username, message, datetime.datetime.now()))
-    #cursor.execute('''INSERT INTO messages (sent_by) VALUES (?)''', (username,))
     l.warning("Received: " + message)
     db.conn.commit()
     socketio.emit('new_message', message)
