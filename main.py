@@ -16,7 +16,6 @@ def login():
     if flask.request.method == 'POST':
         username = flask.request.form['username']
         password = flask.request.form['password']
-
         if auth.authenticate(username, password):
             l.warning("User logged in!")
             flask.session['username'] = username
