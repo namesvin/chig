@@ -1,4 +1,4 @@
-import flask, datetime, logging as l, chigdb as db, chigauth as auth, chiginv as inv, chigsec
+import flask, datetime, logging as l, chigdb as db, chigauth as auth, chiginv as inv, chigmoji as moji, chigsec
 from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_session import Session
@@ -78,6 +78,7 @@ def index():
 def send():
     data = flask.request.form.to_dict()
     message = data.get("message-input")
+    message = moji.parse(message)
     if message == '':
         return '', 204
     username = flask.session['username']
