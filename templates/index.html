@@ -66,7 +66,8 @@
                     messagesDiv.innerHTML = '';
                     for (let created_at in messages) {
                         let p = document.createElement('p');
-                        p.innerHTML = `<b>${messages[created_at]['sent_by']}:</b> ${messages[created_at]['message']}`;
+                        mesig = messages[created_at]['message'].replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                        p.innerHTML = `<b>${messages[created_at]['sent_by']}:</b> ${mesig}`;
                         messagesDiv.appendChild(p);
                         messagesDiv.scrollTop = messagesDiv.scrollHeight;
                     }

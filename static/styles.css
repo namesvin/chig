@@ -73,6 +73,10 @@ h3 {
     width: 100%;
 }
 
+.chatbox:focus {
+    outline: none;
+}
+
 .submit {
     float: right;
     width: auto;
