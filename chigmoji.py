@@ -4,6 +4,7 @@ emojis_auto = {':beamingsmilingeyes:': '😁', ':grinning:': '😀', ':grinnings
 
 emojis_hand = {
     ':imp:' : '😈',
+    ':angry_imp:' : '👿',
     ':angry:' : '😠',
     ':pleading_face:' : '🥺',
     ':scream:' : '😱',
